@@ -11,6 +11,6 @@ if (idade >= 60) {
 }
 
 else {
-    console.log('O usuário tem menos de 60 anos')
+    console.log('O usuário tem menos de 60 anos, não pode se aposentar ainda')
 }
 
