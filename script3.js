@@ -1,94 +1,54 @@
 let nome = prompt("Qual o nome do motorista? ")
-let tipo = parseInt(prompt("Qual o tipo do combustível utilizado? \n  (1 - Gasolina, 2 - Etanol, 3 - Diesel) \n Valor: "))
-let distancia 
-let litros 
-let consumo_medio
-let consumo_real
+let tipo = parseInt(prompt("Tipo de combustível:\n1 - Gasolina\n2 - Etanol\n3 - Diesel \nValor: "))
 
+let consumo_medio
 
 switch(tipo) {
     case 1:
         console.log("---- GASOLINA ----")
         consumo_medio = 12
-        distancia = prompt("Qual a distância percoridda em km? ")
-        litros = prompt("Quantos litros abastecidos? ")
-        consumo_real = distancia / litros
-        consumo_real.toFixed(2)
-        switch(true) {
-            case (consumo_real >= (consumo_medio * 1.1)):
-                console.log(`Consumo esperado: ${consumo_medio}Km/L`)
-                console.log(`Consumo real? ${consumo_real}Km/L`)
-                console.log("Excelente --- acima do esperado")
-                break;
-            case (consumo_real >= (consumo_medio * 0.9)):
-                console.log(`Consumo esperado: ${consumo_medio}Km/L`)
-                console.log(`Consumo real? ${consumo_real}Km/L`)
-                console.log("Regular --- dentro do esperado")
-                break;
-            case (consumo_real >= (consumo_medio * 0.7)):
-                console.log(`Consumo esperado: ${consumo_medio}Km/L`)
-                console.log(`Consumo real? ${consumo_real}Km/L`)
-                console.log("Ruim --- abaixo do esperado")
-                break;
-                default:
-            console.log("Crítico --- veículo requer manutenção")
-        }
         break;
     case 2:
         console.log("---- ETANOL ----")
         consumo_medio = 8.5
-        distancia = prompt("Qual a distância percoridda em km? ")
-        litros = prompt("Quantos litros abastecidos? ")
-        consumo_real = distancia / litros
-        switch(true) {
-            case (consumo_real >= (consumo_medio * 1.1)):
-                console.log(`Consumo esperado: ${consumo_medio}Km/L`)
-                console.log(`Consumo real? ${consumo_real}Km/L`)
-                console.log("Excelente --- acima do esperado")
-                break;
-            case (consumo_real >= (consumo_medio * 0.9)):
-                console.log(`Consumo esperado: ${consumo_medio}Km/L`)
-                console.log(`Consumo real? ${consumo_real}Km/L`)
-                console.log("Regular --- dentro do esperado")
-                break;
-            case (consumo_real >= (consumo_medio * 0.7)):
-                console.log(`Consumo esperado: ${consumo_medio}Km/L`)
-                console.log(`Consumo real? ${consumo_real}Km/L`)
-                console.log("Ruim --- abaixo do esperado")
-                break;
-                default:
-            console.log("Crítico --- veículo requer manutenção")
-        }
         break;
     case 3:
         console.log("---- DIESEL ----")
         consumo_medio = 15
-        distancia = prompt("Qual a distância percoridda em km? ")
-        litros = prompt("Quantos litros abastecidos? ")
-        consumo_real = distancia / litros
-        switch(true) {
-            case (consumo_real >= (consumo_medio * 1.1)):
-                console.log(`Consumo esperado: ${consumo_medio}Km/L`)
-                console.log(`Consumo real? ${consumo_real}Km/L`)
-                console.log("Excelente --- acima do esperado")
-                break;
-            case (consumo_real >= (consumo_medio * 0.9)):
-                console.log(`Consumo esperado: ${consumo_medio}Km/L`)
-                console.log(`Consumo real? ${consumo_real}Km/L`)
-                console.log("Regular --- dentro do esperado")
-                break;
-            case (consumo_real >= (consumo_medio * 0.7)):
-                console.log(`Consumo esperado: ${consumo_medio}Km/L`)
-                console.log(`Consumo real? ${consumo_real}Km/L`)
-                console.log("Ruim --- abaixo do esperado")
-                break;
-                default:
-            console.log("Crítico --- veículo requer manutenção")
-        }
         break;
-        default:
+    default:
             console.log("Combustível inválido.")
+            return
 }
 
-let status = (consumo_real >= (consumo_medio * 1.1) || consumo_real >= (consumo_medio * 0.9)) ? "LIBERADO PARA FROTA" : "ENCAMINHADO PARA REVISÃO"
-        console.log(`${nome}, o seu veículo está ${status}`)
+let distancia = parseFloat(prompt("Distância percorrida (km): "))
+let litros = parseFloat(prompt("Litros abastecidos: "))
+
+let consumo_real = distancia / litros
+
+let avaliacao
+
+switch (true) {
+    case consumo_real >= consumo_medio * 1.1:
+        avaliacao = "Excelente --- acima do esperado"
+        break;
+    case consumo_real >= consumo_medio * 0.9:
+        avaliacao = "Regular --- dentro do esperado"
+        break;
+    case consumo_real >= consumo_medio * 0.7:
+        avaliacao = "Ruim --- abaixo do esperado"
+        break;
+        default:
+            avaliacao = "Crítico --- veículo requer manutenção"
+}
+
+let status = consumo_real >= (consumo_medio * 0.9) ? 
+        "LIBERADO PARA FROTA" : "ENCAMINHADO PARA REVISÃO"
+        
+console.log(`Motorista: ${nome}`)
+console.log(`Consumo esperado: ${consumo_medio.toFixed(2)} Km/L`)
+console.log(`Consumo real: ${consumo_real.toFixed(2)} Km/L`)
+console.log(avaliacao)
+console.log(`Status: ${status}`)
+        
+    
